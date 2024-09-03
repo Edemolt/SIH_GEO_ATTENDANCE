@@ -8,15 +8,18 @@ generator client {
 }
 
 model User {
-  id               String    @id @default(auto()) @map("_id") @db.ObjectId
-  uuid             String    @unique
-  email            String    @unique
+  id               String     @id @default(auto()) @map("_id") @db.ObjectId
+  uuid             String     @unique
+  email            String     @unique
   name             String
   password         String
   currentLocation  String?
-  inCount          Int       @default(0)
-  outCount         Int       @default(0)
-  totalTimeIn      Int       @default(0)
-  entryTimes       DateTime[] @default([])
-  exitTimes        DateTime[] @default([])
+  inCount          Int        @default(0)
+  outCount         Int        @default(0)
+  totalTimeIn      Json       @default("{}")
+  entryTimes       Json       @default("{}")
+  exitTimes        Json       @default("{}")
 }
+
+
+
