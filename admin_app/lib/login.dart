@@ -90,7 +90,9 @@ class _MyLoginState extends State<MyLogin> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, 'map');
+                  },
                   child: const Text('Log In'),
                 ),
                 const SizedBox(
