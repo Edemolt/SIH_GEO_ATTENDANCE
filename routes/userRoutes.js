@@ -1,12 +1,14 @@
 import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { createUser, getAllUsers, getUserByUuid, updateUser, deleteUser, updateTimestamp, getTotalTime} from '../controller/users.js';
+import { register, getAllUsers, getUserByUuid, updateUser, deleteUser, updateTimestamp, getTotalTime, loginUser} from '../controller/users.js';
 
 const prisma = new PrismaClient();
 const userRouter = Router();
 
 // Create a new user
-userRouter.post('/', /*authMiddleware in all the routes */ createUser);
+userRouter.post('/signup', /*authMiddleware in all the routes */ register);
+
+userRouter.post('/login', loginUser);
 
 // Get all users
 userRouter.get('/', getAllUsers);

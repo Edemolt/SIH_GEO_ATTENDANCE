@@ -20,6 +20,3 @@ model User {
   entryTimes       Json       @default("{}")
   exitTimes        Json       @default("{}")
 }
-
-
-
