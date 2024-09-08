@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-class MyLogin extends StatefulWidget {
-  const MyLogin({Key? key}) : super(key: key);
+class MyRegister extends StatefulWidget {
+  const MyRegister({super.key});
 
   @override
-  _MyLoginState createState() => _MyLoginState();
+  // ignore: library_private_types_in_public_api
+  _MyRegisterState createState() => _MyRegisterState();
 }
 
-class _MyLoginState extends State<MyLogin> {
+class _MyRegisterState extends State<MyRegister> {
   final email = TextEditingController();
   final pass = TextEditingController();
   final name = TextEditingController();
@@ -16,7 +17,7 @@ class _MyLoginState extends State<MyLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 10, 20, 50),
+        padding: const EdgeInsets.fromLTRB(80, 10, 80, 50),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           //crossAxisAlignment: CrossAxisAlignment.center,
@@ -25,7 +26,7 @@ class _MyLoginState extends State<MyLogin> {
               child: TextField(
                 controller: name,
                 decoration: InputDecoration(
-                  hintText: 'Majdoor naam dal',
+                  hintText: 'Employee Name',
                   hintStyle: const TextStyle(
                     fontFamily: 'YatraOne',
                     fontSize: 15.0,
@@ -41,11 +42,14 @@ class _MyLoginState extends State<MyLogin> {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 15,
+            ),
             Card(
               child: TextField(
                 controller: email,
                 decoration: InputDecoration(
-                  hintText: 'Majdoor@gmail.com',
+                  hintText: 'Employee@gmail.com',
                   hintStyle: const TextStyle(
                     fontFamily: 'YatraOne',
                     fontSize: 15.0,
@@ -67,6 +71,7 @@ class _MyLoginState extends State<MyLogin> {
             Card(
               child: TextField(
                 controller: pass,
+                obscureText: true,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   hintStyle: const TextStyle(
@@ -92,9 +97,11 @@ class _MyLoginState extends State<MyLogin> {
               children: <Widget>[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple,
+                    backgroundColor: Colors.green,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'login');
+                  },
                   child: const Text('Submit'),
                 ),
               ],

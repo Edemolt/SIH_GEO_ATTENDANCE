@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MyLogin extends StatefulWidget {
-  const MyLogin({Key? key}) : super(key: key);
+  const MyLogin({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyLoginState createState() => _MyLoginState();
 }
 
@@ -14,34 +15,35 @@ class _MyLoginState extends State<MyLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: AppBar(
-      // title: const Text(
-      //   "MAJDOOR",
-      //   style: TextStyle(
-      //     fontFamily: 'YatraOne',
-      //     fontSize: 48,
-      //    ),
-      //  ),
-      //),
+      // Uncomment if you need the AppBar back
+      // appBar: AppBar(
+      //   title: const Text(
+      //     "MAJDOOR",
+      //     style: TextStyle(
+      //       fontFamily: 'YatraOne',
+      //       fontSize: 48,
+      //     ),
+      //   ),
+      // ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 50),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          //crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const Center(
-                child: Text(
-              'Majdoor',
-              style: TextStyle(
-                fontFamily: 'YatraOne',
-                fontSize: 48,
+              child: Text(
+                'Employee ',
+                style: TextStyle(
+                  fontFamily: 'YatraOne',
+                  fontSize: 48,
+                ),
               ),
-            )),
+            ),
             Card(
               child: TextField(
                 controller: email,
                 decoration: InputDecoration(
-                  hintText: 'Majdoor@gmail.com',
+                  hintText: 'Employee@gmail.com',
                   hintStyle: const TextStyle(
                     fontFamily: 'YatraOne',
                     fontSize: 15.0,
@@ -63,6 +65,7 @@ class _MyLoginState extends State<MyLogin> {
             Card(
               child: TextField(
                 controller: pass,
+                obscureText: true, // Hides password input
                 decoration: InputDecoration(
                   hintText: 'Password',
                   hintStyle: const TextStyle(
@@ -88,10 +91,11 @@ class _MyLoginState extends State<MyLogin> {
               children: <Widget>[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple,
+                    backgroundColor: Colors.green,
                   ),
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, 'map');
+                    // Ensure 'map' route is defined in your MaterialApp routes
+                    Navigator.pushNamed(context, 'checkin');
                   },
                   child: const Text('Log In'),
                 ),
@@ -100,9 +104,11 @@ class _MyLoginState extends State<MyLogin> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple,
+                    backgroundColor: Colors.green,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'register');
+                  },
                   child: const Text('Register'),
                 ),
               ],
