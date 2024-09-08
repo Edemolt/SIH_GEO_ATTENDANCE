@@ -14,6 +14,7 @@ model User {
   name             String
   password         String
   currentLocation  String?
+  workMode         String     @default("WFO")
   inCount          Int        @default(0)
   outCount         Int        @default(0)
   totalTimeIn      Json       @default("{}")
