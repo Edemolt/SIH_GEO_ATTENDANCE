@@ -1,78 +1,11 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(),
-      darkTheme: ThemeData.dark(),
-      debugShowCheckedModeBanner: false,
-      initialRoute: 'login', // Start with the login page
-      routes: {
-        'login': (context) => const MyLogin(), // Login page route
-        'map': (context) => const MapPage(), // Map page route
-      },
-    );
-  }
-}
-
-class MapPage extends StatefulWidget {
-  const MapPage({super.key});
-
-  @override
-  State<MapPage> createState() => _MapPageState();
-}
-
-class _MapPageState extends State<MapPage> {
-  final Completer<GoogleMapController> _mapController =
-      Completer<GoogleMapController>();
-
-  static const LatLng _location1 = LatLng(30.316496, 78.032188);
-  static const LatLng _location2 = LatLng(29.380978, 79.528519);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Map Page'),
-      ),
-      body: GoogleMap(
-        onMapCreated: (GoogleMapController controller) {
-          _mapController.complete(controller);
-        },
-        initialCameraPosition: const CameraPosition(
-          target: _location1,
-          zoom: 13,
-        ),
-        markers: {
-          Marker(
-            markerId: const MarkerId("location1"),
-            position: _location1,
-            infoWindow: const InfoWindow(title: "Dehradun"),
-          ),
-          Marker(
-            markerId: const MarkerId("location2"),
-            position: _location2,
-            infoWindow: const InfoWindow(title: "Graphic Era University"),
-          ),
-        },
-      ),
-    );
-  }
-}
+import 'package:admin_app/map.dart';
 
 class MyLogin extends StatefulWidget {
-  const MyLogin({Key? key}) : super(key: key);
+  const MyLogin({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyLoginState createState() => _MyLoginState();
 }
 
@@ -89,18 +22,19 @@ class _MyLoginState extends State<MyLogin> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Center(
-                child: Text(
-              'Majdoor',
-              style: TextStyle(
-                fontFamily: 'YatraOne',
-                fontSize: 48,
+              child: Text(
+                'Employee ',
+                style: TextStyle(
+                  fontFamily: 'YatraOne',
+                  fontSize: 48,
+                ),
               ),
-            )),
+            ),
             Card(
               child: TextField(
                 controller: email,
                 decoration: InputDecoration(
-                  hintText: 'Majdoor@gmail.com',
+                  hintText: 'Employee@gmail.com',
                   hintStyle: const TextStyle(
                     fontFamily: 'YatraOne',
                     fontSize: 15.0,
@@ -122,6 +56,7 @@ class _MyLoginState extends State<MyLogin> {
             Card(
               child: TextField(
                 controller: pass,
+                obscureText: true, // Hides password input
                 decoration: InputDecoration(
                   hintText: 'Password',
                   hintStyle: const TextStyle(
@@ -147,10 +82,11 @@ class _MyLoginState extends State<MyLogin> {
               children: <Widget>[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple,
+                    backgroundColor: Colors.green,
                   ),
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, 'map');
+                    // Ensure 'map' route is defined in your MaterialApp routes
+                    Navigator.pushNamed(context, 'map');
                   },
                   child: const Text('Log In'),
                 ),
@@ -159,10 +95,10 @@ class _MyLoginState extends State<MyLogin> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple,
+                    backgroundColor: Colors.green,
                   ),
                   onPressed: () {
-                    // Add registration logic here
+                    Navigator.pushNamed(context, 'register');
                   },
                   child: const Text('Register'),
                 ),

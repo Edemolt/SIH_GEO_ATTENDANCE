@@ -46,17 +46,16 @@ dev_dependencies:
 
   flutter_lints: ^4.0.0
 
-
 flutter:
-
-  
   uses-material-design: true
 
-  
+  assets:
+    - assests/images/map_ki_photo.png
+
   fonts:
-     - family: YatraOne
-       fonts:
-        - asset: fonts/YatraOne-Regular.ttf 
+    - family: YatraOne
+      fonts:
+        - asset: fonts/YatraOne-Regular.ttf
      #- family: Schyler
      #  fonts:
      #    - asset: fonts/Schyler-Regular.ttf
