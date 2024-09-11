@@ -45,9 +45,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
-	<string>NSLocationWhenInUseUsageDescription</string>
-	<key>want to display location on map, and track it</key>
-	<string>NSLocationAlwaysAndWhenInUseUsageDescription</string>
-	<key>want to display location on map, and track it</key>
+	
+	<!-- Location usage descriptions -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your location to show it on the map and track it.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We need your location to show it on the map and track it even when the app is in the background.</string>
 </dict>
 </plist>

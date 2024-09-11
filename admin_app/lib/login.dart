@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:admin_app/map.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({super.key});
@@ -15,16 +16,6 @@ class _MyLoginState extends State<MyLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Uncomment if you need the AppBar back
-      // appBar: AppBar(
-      //   title: const Text(
-      //     "MAJDOOR",
-      //     style: TextStyle(
-      //       fontFamily: 'YatraOne',
-      //       fontSize: 48,
-      //     ),
-      //   ),
-      // ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 50),
         child: Column(
@@ -95,7 +86,7 @@ class _MyLoginState extends State<MyLogin> {
                   ),
                   onPressed: () {
                     // Ensure 'map' route is defined in your MaterialApp routes
-                    Navigator.pushNamed(context, 'checkin');
+                    Navigator.pushNamed(context, 'map');
                   },
                   child: const Text('Log In'),
                 ),

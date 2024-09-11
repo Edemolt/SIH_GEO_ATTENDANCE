@@ -37,41 +37,44 @@ class _MyCheckinState extends State<MyCheckin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: Padding(
-        padding: const EdgeInsets.all(80.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            //display
-            Text(
-              _enterTime.format(context).toString(),
-              style: const TextStyle(fontSize: 35),
-            ),
-
-            //butoon
-            MaterialButton(
-              onPressed: _showEntryTimePicker,
-              color: Colors.green,
-              child: const Text('CHECK IN TIME'),
-            ),
-            const SizedBox(
-              height: 200,
-            ),
-            Text(
-              _exitTime.format(context).toString(),
-              style: const TextStyle(fontSize: 35),
-            ),
-
-            //butoon
-            MaterialButton(
-              onPressed: _showExitTimePicker,
-              color: Colors.green,
-              child: const Text('CHECK OUT TIME'),
-            ),
-          ],
+        appBar: AppBar(
+          title: const Text('Manual Check-In'),
         ),
-      ),
-    ));
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(80.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                //display
+                Text(
+                  _enterTime.format(context).toString(),
+                  style: const TextStyle(fontSize: 35),
+                ),
+
+                //butoon
+                MaterialButton(
+                  onPressed: _showEntryTimePicker,
+                  color: Colors.green,
+                  child: const Text('CHECK IN TIME'),
+                ),
+                const SizedBox(
+                  height: 200,
+                ),
+                Text(
+                  _exitTime.format(context).toString(),
+                  style: const TextStyle(fontSize: 35),
+                ),
+
+                //butoon
+                MaterialButton(
+                  onPressed: _showExitTimePicker,
+                  color: Colors.green,
+                  child: const Text('CHECK OUT TIME'),
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 }

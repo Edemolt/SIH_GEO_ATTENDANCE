@@ -1,5 +1,6 @@
-import 'package:admin_app/register.dart';
+import 'package:admin_app/map.dart';
 import 'package:flutter/material.dart';
+import 'package:admin_app/register.dart';
 import 'package:admin_app/login.dart';
 import 'package:admin_app/manual_checkin.dart';
 
@@ -27,7 +28,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: 'login',
       routes: {
         'login': (context) => const MyLogin(),
-        //'map': (context) => const MapPage(),
+        'map': (context) => const MapPage(),
         'register': (context) => const MyRegister(),
         'checkin': (context) => const MyCheckin(),
       },
