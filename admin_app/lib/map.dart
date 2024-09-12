@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:location/location.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -10,53 +12,122 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  final Location _locationController = Location();
   final Completer<GoogleMapController> _mapController =
       Completer<GoogleMapController>();
 
-  static const LatLng _location1 = LatLng(30.316496, 78.032188);
-  static const LatLng _location2 = LatLng(30.3283021, 78.0586985);
+  static const LatLng _pGooglePlex = LatLng(30.3165, 78.0322);
+  static const LatLng _pApplePark = LatLng(26.1832, 76.9683);
+  LatLng? _currentP;
+
+  Map<PolylineId, Polyline> polylines = {};
+
+  @override
+  void initState() {
+    super.initState();
+    getLocationUpdates();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          Expanded(child: Image.asset('assests/images/map_ki_photo.png')
-              //GoogleMap(
-              //onMapCreated: (GoogleMapController controller) {
-              //_mapController.complete(controller);
-              //},
-              //initialCameraPosition: const CameraPosition(
-              //target: _location1,
-              // zoom: 13,
-              //),
-              //markers: {
-              //Marker(
-              //markerId: const MarkerId("_location1"),
-              //position: _location1,
-              //infoWindow: const InfoWindow(title: "Location 1"),
-              //),
-              // Marker(
-              // markerId: const MarkerId("_location2"),
-              // position: _location2,
-              // infoWindow: const InfoWindow(title: "Location 2"),
-              // ),
-              //},
-              //),
-              ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: MaterialButton(
-              onPressed: () {
-                Navigator.pushNamed(context, 'checkin');
-              },
-              color: Colors.green,
-              child: const Text('CHECK IN TIME',
-                  style: TextStyle(color: Colors.white)),
+          Expanded(
+            flex: 7, // Take 7/8 of the screen for the map
+            child: _currentP == null
+                ? const Center(
+                    child:
+                        CircularProgressIndicator(), // Use a loading indicator
+                  )
+                : GoogleMap(
+                    onMapCreated: (GoogleMapController controller) {
+                      _mapController.complete(controller);
+                    },
+                    initialCameraPosition: CameraPosition(
+                      target: _pGooglePlex,
+                      zoom: 13,
+                    ),
+                    markers: {
+                      if (_currentP != null)
+                        Marker(
+                          markerId: const MarkerId("_currentLocation"),
+                          icon: BitmapDescriptor.defaultMarker,
+                          position: _currentP!,
+                        ),
+                      const Marker(
+                          markerId: MarkerId("_sourceLocation"),
+                          icon: BitmapDescriptor.defaultMarker,
+                          position: _pGooglePlex),
+                      const Marker(
+                          markerId: MarkerId("_destionationLocation"),
+                          icon: BitmapDescriptor.defaultMarker,
+                          position: _pApplePark),
+                    },
+                    polylines: Set<Polyline>.of(polylines.values),
+                    myLocationEnabled: true, // Show user's current location
+                    myLocationButtonEnabled: true,
+                  ),
+          ),
+          Expanded(
+            flex: 1, // Take 1/8 of the screen for the button
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'checkin');
+                  },
+                  //color: Colors.green,
+                  child: const Text('CHECK IN TIME',
+                      style: TextStyle(color: Colors.white))),
             ),
           ),
         ],
       ),
     );
+  }
+
+  Future<void> _cameraToPosition(LatLng pos) async {
+    final GoogleMapController controller = await _mapController.future;
+    CameraPosition _newCameraPosition = CameraPosition(
+      target: pos,
+      zoom: 13,
+    );
+    await controller.animateCamera(
+      CameraUpdate.newCameraPosition(_newCameraPosition),
+    );
+  }
+
+  Future<void> getLocationUpdates() async {
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+
+    _serviceEnabled = await _locationController.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await _locationController.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await _locationController.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await _locationController.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _locationController.onLocationChanged
+        .listen((LocationData currentLocation) {
+      if (currentLocation.latitude != null &&
+          currentLocation.longitude != null) {
+        setState(() {
+          _currentP =
+              LatLng(currentLocation.latitude!, currentLocation.longitude!);
+          _cameraToPosition(_currentP!);
+        });
+      }
+    });
   }
 }

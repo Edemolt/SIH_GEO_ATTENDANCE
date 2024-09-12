@@ -9,8 +9,8 @@ class MyCheckin extends StatefulWidget {
 }
 
 class _MyCheckinState extends State<MyCheckin> {
-  TimeOfDay _enterTime = TimeOfDay(hour: 8, minute: 00);
-  TimeOfDay _exitTime = TimeOfDay(hour: 10, minute: 30);
+  TimeOfDay _enterTime = const TimeOfDay(hour: 8, minute: 00);
+  TimeOfDay _exitTime = const TimeOfDay(hour: 10, minute: 30);
 
   void _showEntryTimePicker() {
     showTimePicker(

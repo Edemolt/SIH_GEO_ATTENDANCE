@@ -1,3 +1,4 @@
+
 name: admin_app
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
@@ -49,9 +50,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  assets:
-    - assests/images/map_ki_photo.png
-
+ 
   fonts:
     - family: YatraOne
       fonts:
