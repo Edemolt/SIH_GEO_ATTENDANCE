@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+
 import 'package:location/location.dart';
 
 class MapPage extends StatefulWidget {
@@ -31,62 +32,38 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            flex: 7, // Take 7/8 of the screen for the map
-            child: _currentP == null
-                ? const Center(
-                    child:
-                        CircularProgressIndicator(), // Use a loading indicator
-                  )
-                : GoogleMap(
-                    onMapCreated: (GoogleMapController controller) {
-                      _mapController.complete(controller);
-                    },
-                    initialCameraPosition: CameraPosition(
-                      target: _pGooglePlex,
-                      zoom: 13,
-                    ),
-                    markers: {
-                      if (_currentP != null)
-                        Marker(
-                          markerId: const MarkerId("_currentLocation"),
-                          icon: BitmapDescriptor.defaultMarker,
-                          position: _currentP!,
-                        ),
-                      const Marker(
-                          markerId: MarkerId("_sourceLocation"),
-                          icon: BitmapDescriptor.defaultMarker,
-                          position: _pGooglePlex),
-                      const Marker(
-                          markerId: MarkerId("_destionationLocation"),
-                          icon: BitmapDescriptor.defaultMarker,
-                          position: _pApplePark),
-                    },
-                    polylines: Set<Polyline>.of(polylines.values),
-                    myLocationEnabled: true, // Show user's current location
-                    myLocationButtonEnabled: true,
+      body: _currentP == null
+          ? const Center(
+              child: CircularProgressIndicator(), // Use a loading indicator
+            )
+          : GoogleMap(
+              onMapCreated: (GoogleMapController controller) {
+                _mapController.complete(controller);
+              },
+              initialCameraPosition: CameraPosition(
+                target: _pGooglePlex,
+                zoom: 13,
+              ),
+              markers: {
+                if (_currentP != null)
+                  Marker(
+                    markerId: const MarkerId("_currentLocation"),
+                    icon: BitmapDescriptor.defaultMarker,
+                    position: _currentP!,
                   ),
-          ),
-          Expanded(
-            flex: 1, // Take 1/8 of the screen for the button
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 10, 5),
-              child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, 'checkin');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                  ),
-                  //color: Colors.green,
-                  child: const Text('CHECK IN TIME',
-                      style: TextStyle(color: Colors.white))),
+                const Marker(
+                    markerId: MarkerId("_sourceLocation"),
+                    icon: BitmapDescriptor.defaultMarker,
+                    position: _pGooglePlex),
+                const Marker(
+                    markerId: MarkerId("_destionationLocation"),
+                    icon: BitmapDescriptor.defaultMarker,
+                    position: _pApplePark),
+              },
+              polylines: Set<Polyline>.of(polylines.values),
+              myLocationEnabled: true, // Show user's current location
+              myLocationButtonEnabled: true,
             ),
-          ),
-        ],
-      ),
     );
   }
 
