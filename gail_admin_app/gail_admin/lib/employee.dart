@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class EmployeePage extends StatelessWidget {
   final int index;
 
-  EmployeePage(this.index);
+  const EmployeePage(this.index, {super.key});
 
   @override
   Widget build(Object context) {

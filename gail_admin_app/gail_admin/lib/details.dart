@@ -16,9 +16,9 @@ class _MyDetailsState extends State<MyDetails> {
       itemBuilder: (_, index) {
         return ListTile(
           title: Text('Employee $index'),
-          subtitle: Text('Employee ID'),
-          leading: Icon(Icons.accessibility_new_sharp),
-          trailing: Icon(Icons.arrow_circle_right_outlined),
+          subtitle: const Text('Employee ID'),
+          leading: const Icon(Icons.accessibility_new_sharp),
+          trailing: const Icon(Icons.arrow_circle_right_outlined),
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => EmployeePage(index)));
@@ -32,7 +32,7 @@ class _MyDetailsState extends State<MyDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Employee Data'),
+        title: const Text('Employee Data'),
       ),
       body: _buildListView(context),
     );

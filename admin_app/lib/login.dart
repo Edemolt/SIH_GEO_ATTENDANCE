@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:admin_app/map.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({super.key});

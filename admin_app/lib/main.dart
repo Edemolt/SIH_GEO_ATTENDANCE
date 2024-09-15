@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: 'login',
       routes: {
         'login': (context) => const MyLogin(),
-        'map': (context) => const MapPage(),
+        'map': (context) => const MapPage(), // MapPage route added here
         'register': (context) => const MyRegister(),
         'checkin': (context) => const MyCheckin(),
       },
