@@ -26,18 +26,24 @@ class _MyRegisterState extends State<MyRegister> {
               child: TextField(
                 controller: name,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Theme.of(context).primaryColor,
                   hintText: 'Employee Name',
                   hintStyle: const TextStyle(
                     fontFamily: 'YatraOne',
                     fontSize: 15.0,
                     fontWeight: FontWeight.normal,
+                    color: Color(0xFFEDE885),
                   ),
                   border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
                     onPressed: () {
                       name.clear();
                     },
-                    icon: const Icon(Icons.clear),
+                    icon: const Icon(
+                      Icons.clear,
+                      color: Color(0xFFEDE885),
+                    ),
                   ),
                 ),
               ),
@@ -49,18 +55,24 @@ class _MyRegisterState extends State<MyRegister> {
               child: TextField(
                 controller: email,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Theme.of(context).primaryColor,
                   hintText: 'Employee@gmail.com',
                   hintStyle: const TextStyle(
                     fontFamily: 'YatraOne',
                     fontSize: 15.0,
                     fontWeight: FontWeight.normal,
+                    color: Color(0xFFEDE885),
                   ),
                   border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
                     onPressed: () {
                       email.clear();
                     },
-                    icon: const Icon(Icons.clear),
+                    icon: const Icon(
+                      Icons.clear,
+                      color: Color(0xFFEDE885),
+                    ),
                   ),
                 ),
               ),
@@ -73,18 +85,24 @@ class _MyRegisterState extends State<MyRegister> {
                 controller: pass,
                 obscureText: true,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Theme.of(context).primaryColor,
                   hintText: 'Password',
                   hintStyle: const TextStyle(
                     fontFamily: 'YatraOne',
                     fontSize: 15.0,
                     fontWeight: FontWeight.normal,
+                    color: Color(0xFFEDE885),
                   ),
                   border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
                     onPressed: () {
                       pass.clear();
                     },
-                    icon: const Icon(Icons.clear),
+                    icon: const Icon(
+                      Icons.clear,
+                      color: Color(0xFFEDE885),
+                    ),
                   ),
                 ),
               ),
@@ -97,12 +115,18 @@ class _MyRegisterState extends State<MyRegister> {
               children: <Widget>[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: Color(0xFFEDE885),
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, 'login');
                   },
-                  child: const Text('Submit'),
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w900,
+                        fontFamily: 'QuickSandBold'),
+                  ),
                 ),
               ],
             )

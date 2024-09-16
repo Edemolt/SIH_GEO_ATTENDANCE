@@ -19,6 +19,7 @@ class _MyLoginState extends State<MyLogin> {
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 50),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const Center(
               child: Text(
