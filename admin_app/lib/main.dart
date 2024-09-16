@@ -1,3 +1,4 @@
+import 'package:admin_app/history.dart';
 import 'package:admin_app/map.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_app/register.dart';
@@ -21,16 +22,20 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-        brightness: Brightness.dark,
+        fontFamily: 'QuickSandBold',
+        scaffoldBackgroundColor: const Color(0xFF2E3414),
+        primaryColor: const Color(0xFF797E44),
+
+        //brightness: Brightness.dark,
       ),
-      darkTheme: ThemeData.dark(),
+      //darkTheme: ThemeData.dark(),
       initialRoute: 'login',
       routes: {
         'login': (context) => const MyLogin(),
         'map': (context) => const MapPage(), // MapPage route added here
         'register': (context) => const MyRegister(),
         'checkin': (context) => const MyCheckin(),
+        'history': (context) => const MyHistory(),
       },
     );
   }

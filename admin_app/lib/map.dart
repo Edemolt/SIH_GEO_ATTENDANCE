@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:location/location.dart';
 
 class MapPage extends StatefulWidget {
@@ -28,9 +29,59 @@ class _MapPageState extends State<MapPage> {
     getLocationUpdates();
   }
 
+  int _selectedIndex = 0; // Set default index to 0 for "Home"
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Container(
+        color: const Color(0xFF797E44),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
+          child: GNav(
+            backgroundColor: const Color(0xFF797E44),
+            color: const Color(0xFFEDE885),
+            activeColor: const Color(0xFFEDE885),
+            tabBackgroundColor: const Color(0xFFA1A364),
+            gap: 45,
+            padding: const EdgeInsets.all(16),
+            selectedIndex: _selectedIndex, // Set active index to 0
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: 'HOME',
+              ),
+              GButton(
+                icon: Icons.watch_later,
+                text: 'Manual',
+              ),
+              GButton(
+                icon: Icons.history,
+                text: 'History',
+              ),
+              GButton(
+                icon: Icons.arrow_back_ios_new_rounded,
+                text: 'Log Out',
+              ),
+            ],
+            onTabChange: (index) {
+              if (index == 0) {
+                // Navigate to 'home' route
+                Navigator.pushNamed(context, 'map');
+              } else if (index == 1) {
+                // Navigate to 'checkin' route
+                Navigator.pushNamed(context, 'checkin');
+              } else if (index == 2) {
+                // Navigate to 'history' route
+                Navigator.pushNamed(context, 'history');
+              } else if (index == 3) {
+                // Navigate to 'login' route (Log Out)
+                Navigator.pushNamed(context, 'login');
+              }
+            },
+          ),
+        ),
+      ),
       body: Column(
         children: [
           Expanded(
@@ -44,7 +95,7 @@ class _MapPageState extends State<MapPage> {
                     onMapCreated: (GoogleMapController controller) {
                       _mapController.complete(controller);
                     },
-                    initialCameraPosition: CameraPosition(
+                    initialCameraPosition: const CameraPosition(
                       target: _pGooglePlex,
                       zoom: 13,
                     ),
@@ -69,22 +120,6 @@ class _MapPageState extends State<MapPage> {
                     myLocationButtonEnabled: true,
                   ),
           ),
-          Expanded(
-            flex: 1, // Take 1/8 of the screen for the button
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 10, 5),
-              child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, 'checkin');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                  ),
-                  //color: Colors.green,
-                  child: const Text('CHECK IN TIME',
-                      style: TextStyle(color: Colors.white))),
-            ),
-          ),
         ],
       ),
     );
@@ -92,31 +127,31 @@ class _MapPageState extends State<MapPage> {
 
   Future<void> _cameraToPosition(LatLng pos) async {
     final GoogleMapController controller = await _mapController.future;
-    CameraPosition _newCameraPosition = CameraPosition(
+    CameraPosition newCameraPosition = CameraPosition(
       target: pos,
       zoom: 13,
     );
     await controller.animateCamera(
-      CameraUpdate.newCameraPosition(_newCameraPosition),
+      CameraUpdate.newCameraPosition(newCameraPosition),
     );
   }
 
   Future<void> getLocationUpdates() async {
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
 
-    _serviceEnabled = await _locationController.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await _locationController.requestService();
-      if (!_serviceEnabled) {
+    serviceEnabled = await _locationController.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await _locationController.requestService();
+      if (!serviceEnabled) {
         return;
       }
     }
 
-    _permissionGranted = await _locationController.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await _locationController.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
+    permissionGranted = await _locationController.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await _locationController.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
         return;
       }
     }

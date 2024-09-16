@@ -22,22 +22,42 @@ class _MyLoginState extends State<MyLogin> {
           children: <Widget>[
             const Center(
               child: Text(
-                'Employee ',
+                'Hello Again! ',
                 style: TextStyle(
                   fontFamily: 'YatraOne',
                   fontSize: 48,
+                  color: Color(0xFFEDE885),
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Center(
+              child: Text(
+                'Welcome Back, you\'ve been missed ',
+                style: TextStyle(
+                  fontFamily: 'YatraOne',
+                  fontSize: 20,
+                  color: Color(0xFFEDE885),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
             Card(
               child: TextField(
                 controller: email,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Theme.of(context).primaryColor,
                   hintText: 'Employee@gmail.com',
                   hintStyle: const TextStyle(
                     fontFamily: 'YatraOne',
                     fontSize: 15.0,
                     fontWeight: FontWeight.normal,
+                    color: Color(0xFFEDE885),
                   ),
                   border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
@@ -57,11 +77,14 @@ class _MyLoginState extends State<MyLogin> {
                 controller: pass,
                 obscureText: true, // Hides password input
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Theme.of(context).primaryColor,
                   hintText: 'Password',
                   hintStyle: const TextStyle(
                     fontFamily: 'YatraOne',
                     fontSize: 15.0,
                     fontWeight: FontWeight.normal,
+                    color: Color(0xFFEDE885),
                   ),
                   border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
@@ -81,25 +104,37 @@ class _MyLoginState extends State<MyLogin> {
               children: <Widget>[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: const Color(0xFFEDE885),
                   ),
                   onPressed: () {
                     // Ensure 'map' route is defined in your MaterialApp routes
                     Navigator.pushNamed(context, 'map');
                   },
-                  child: const Text('Log In'),
+                  child: const Text(
+                    'Log In',
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w900,
+                        fontFamily: 'QuickSandBold'),
+                  ),
                 ),
                 const SizedBox(
                   width: 30,
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: const Color(0xFFEDE885),
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, 'register');
                   },
-                  child: const Text('Register'),
+                  child: const Text(
+                    'Register',
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w900,
+                        fontFamily: 'QuickSandBold'),
+                  ),
                 ),
               ],
             )
