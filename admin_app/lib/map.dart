@@ -29,7 +29,7 @@ class _MapPageState extends State<MapPage> {
     getLocationUpdates();
   }
 
-  int _selectedIndex = 0; // Set default index to 0 for "Home"
+  final int _selectedIndex = 0; // Set default index to 0 for "Home"
 
   @override
   Widget build(BuildContext context) {
