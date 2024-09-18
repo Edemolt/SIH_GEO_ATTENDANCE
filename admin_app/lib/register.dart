@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'apiservice.dart';
 
 class MyRegister extends StatefulWidget {
   const MyRegister({super.key});
@@ -12,7 +13,30 @@ class _MyRegisterState extends State<MyRegister> {
   final email = TextEditingController();
   final pass = TextEditingController();
   final name = TextEditingController();
+  final ApiService apiService = ApiService(); // Initialize the ApiService
 
+  // Function to handle registration
+  void _register() async {
+    try {
+      // Call the register API with name, email, and password
+      final response = await apiService.register(name.text, email.text, pass.text);
+
+      if (response['success']) {
+        // Navigate to the login page if registration is successful
+        Navigator.pushNamed(context, 'login');
+      } else {
+        // Show error message if registration fails
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(response['message'])),
+        );
+      }
+    } catch (e) {
+      // Handle exceptions (e.g., network errors)
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Registration failed. Please try again.')),
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

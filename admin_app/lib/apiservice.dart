@@ -45,4 +45,5 @@ class ApiService {
       throw Exception('Failed to register');
     }
   }
+  
 }

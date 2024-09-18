@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'apiservice.dart'; 
 
 class MyLogin extends StatefulWidget {
   const MyLogin({super.key});
@@ -7,11 +8,34 @@ class MyLogin extends StatefulWidget {
   // ignore: library_private_types_in_public_api
   _MyLoginState createState() => _MyLoginState();
 }
+  
 
 class _MyLoginState extends State<MyLogin> {
   final email = TextEditingController();
   final pass = TextEditingController();
+  final ApiService apiService = ApiService(); 
+  // Function to handle login
+  void _login() async {
+    try {
+      // Call the login API with email and password
+      final response = await apiService.login(email.text, pass.text);
 
+      if (response['success']) {
+        // Navigate to the 'map' page if login is successful
+        Navigator.pushNamed(context, 'map');
+      } else {
+        // Show error message if login fails
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(response['message'])),
+        );
+      }
+    } catch (e) {
+      // Handle exceptions (e.g., network errors)
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Login failed. Please try again.')),
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
