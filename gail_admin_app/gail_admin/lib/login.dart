@@ -19,7 +19,7 @@ class _MyLoginState extends State<MyLogin> {
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 50),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.baseline,
           children: <Widget>[
             const Center(
               child: Text(
@@ -27,6 +27,7 @@ class _MyLoginState extends State<MyLogin> {
                 style: TextStyle(
                   fontFamily: 'YatraOne',
                   fontSize: 48,
+                  color: Color(0xFFfff0d1),
                 ),
               ),
             ),
@@ -34,18 +35,24 @@ class _MyLoginState extends State<MyLogin> {
               child: TextField(
                 controller: email,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Theme.of(context).primaryColor,
                   hintText: 'Admin@gmail.com',
                   hintStyle: const TextStyle(
-                    fontFamily: 'YatraOne',
                     fontSize: 15.0,
                     fontWeight: FontWeight.normal,
+                    color: Color(0xFFfff0d1),
+                    fontFamily: 'QuickSand',
                   ),
                   border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
                     onPressed: () {
                       email.clear();
                     },
-                    icon: const Icon(Icons.clear),
+                    icon: const Icon(
+                      Icons.clear,
+                      color: Color(0xFFfff0d1),
+                    ),
                   ),
                 ),
               ),
@@ -56,11 +63,15 @@ class _MyLoginState extends State<MyLogin> {
             Card(
               child: TextField(
                 controller: pass,
-                obscureText: true, // Hides password input
+                obscureText: true,
+                // Hides password input
                 decoration: InputDecoration(
                   hintText: 'Password',
+                  filled: true,
+                  fillColor: Theme.of(context).primaryColor,
                   hintStyle: const TextStyle(
-                    fontFamily: 'YatraOne',
+                    color: Color(0xFFfff0d1),
+                    fontFamily: 'QuickSand',
                     fontSize: 15.0,
                     fontWeight: FontWeight.normal,
                   ),
@@ -69,7 +80,10 @@ class _MyLoginState extends State<MyLogin> {
                     onPressed: () {
                       pass.clear();
                     },
-                    icon: const Icon(Icons.clear),
+                    icon: const Icon(
+                      Icons.clear,
+                      color: Color(0xFFfff0d1),
+                    ),
                   ),
                 ),
               ),
@@ -87,7 +101,13 @@ class _MyLoginState extends State<MyLogin> {
                   onPressed: () {
                     Navigator.pushNamed(context, 'details');
                   },
-                  child: const Text('Log In'),
+                  child: const Text(
+                    'Log In',
+                    style: TextStyle(
+                      color: Color(0xFFfff0d1),
+                      fontFamily: 'QuickSand',
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   width: 30,

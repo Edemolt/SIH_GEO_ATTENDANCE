@@ -115,7 +115,7 @@ class _MyRegisterState extends State<MyRegister> {
               children: <Widget>[
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFEDE885),
+                    backgroundColor: const Color(0xFFEDE885),
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, 'login');
