@@ -1,36 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class MyMapPage extends StatefulWidget {
+class LeavePage extends StatefulWidget {
   final int index;
 
-  const MyMapPage(this.index, {super.key});
+  const LeavePage(this.index, {super.key});
 
   @override
-  State<MyMapPage> createState() => _MyMapPageState();
+  State<LeavePage> createState() => _LeavePageState();
 }
 
-class _MyMapPageState extends State<MyMapPage> {
+class _LeavePageState extends State<LeavePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Map'),
-        backgroundColor: const Color(0xFF8967B3),
-      ),
       bottomNavigationBar: GNav(
         tabBackgroundColor: const Color(0xFF8967b3),
         activeColor: const Color(0xFFE6D9A2),
         backgroundColor: const Color(0xFF8967b3),
         gap: 15,
-        selectedIndex: 0, // Map is active
+        selectedIndex: 2, // Requests active
         onTabChange: (index) {
           if (index == 0) {
-            // Stay on Map
+            Navigator.pushNamed(context, 'map');
           } else if (index == 1) {
             Navigator.pushNamed(context, 'details');
           } else if (index == 2) {
-            Navigator.pushNamed(context, 'leave');
+            // Stay on Requests page
           } else if (index == 3) {
             Navigator.pushNamed(context, 'login');
           }
@@ -54,10 +50,27 @@ class _MyMapPageState extends State<MyMapPage> {
           ),
         ],
       ),
-      body: const Center(
-        child: Text(
-          'Map Page',
-          style: TextStyle(fontSize: 24),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.builder(
+          itemCount: 4, // messages count
+          itemBuilder: (context, index) {
+            return Card(
+              color: const Color(0xFFCB80AB),
+              elevation: 5,
+              margin: const EdgeInsets.symmetric(vertical: 8),
+              child: ListTile(
+                title: Text(
+                  'Leave request message ${index + 1}',
+                  style: const TextStyle(color: Colors.white),
+                ),
+                subtitle: Text(
+                  'Time here',
+                  style: const TextStyle(color: Colors.white70),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
