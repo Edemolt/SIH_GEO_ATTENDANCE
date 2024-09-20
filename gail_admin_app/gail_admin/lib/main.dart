@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: const Color(0xFF624E88),
         primaryColor: const Color(0xFF8967B3),
       ),
-      initialRoute: 'map',
+      initialRoute: 'login',
       routes: {
         'login': (context) => const MyLogin(),
         'details': (context) => const MyDetails(),
