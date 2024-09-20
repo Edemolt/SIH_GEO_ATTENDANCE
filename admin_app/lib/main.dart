@@ -23,8 +23,8 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'QuickSandBold',
-        scaffoldBackgroundColor: const Color(0xFF2E3414),
-        primaryColor: const Color(0xFF797E44),
+        scaffoldBackgroundColor: const Color(0xFF6C22A6),
+        primaryColor: const Color(0xFF6962AD),
 
         //brightness: Brightness.dark,
       ),

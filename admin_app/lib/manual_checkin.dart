@@ -5,7 +5,6 @@ class MyCheckin extends StatefulWidget {
   const MyCheckin({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MyCheckinState createState() => _MyCheckinState();
 }
 
@@ -40,14 +39,14 @@ class _MyCheckinState extends State<MyCheckin> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        color: const Color(0xFF797E44),
+        color: const Color(0xFF6962AD),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
           child: GNav(
-            backgroundColor: const Color(0xFF797E44),
-            color: const Color(0xFFEDE885),
-            activeColor: const Color(0xFFEDE885),
-            tabBackgroundColor: const Color(0xFFA1A364),
+            backgroundColor: const Color(0xFF6962AD),
+            color: const Color(0xFF000000),
+            activeColor: const Color(0xFF000000),
+            tabBackgroundColor: const Color(0xFF83C0C1),
             gap: 45,
             padding: const EdgeInsets.all(16),
             selectedIndex: _selectedIndex, // Use the current active index
@@ -89,47 +88,108 @@ class _MyCheckinState extends State<MyCheckin> {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(80.0),
+          padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                _enterTime.format(context).toString(),
-                style: const TextStyle(
-                  fontSize: 35,
-                  color: Color(0xFFEDE885),
-                  fontFamily: 'QuickSandBold',
+              Container(
+                decoration: BoxDecoration(
+                  color: const Color(0xFF96E9C6),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Text(
+                      _enterTime.format(context),
+                      style: const TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2F4F4F),
+                        fontFamily: 'QuickSandBold',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: _showEntryTimePicker,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF6962AD),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40, vertical: 15),
+                      ),
+                      child: const Text(
+                        'Set Check-in Time',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF96E9C6),
+                          fontFamily: 'QuickSandBold',
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              MaterialButton(
-                onPressed: _showEntryTimePicker,
-                color: const Color(0xFFEDE885),
-                child: const Text(
-                  'CHECK IN TIME',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    fontFamily: 'QuickSandBold',
-                  ),
+              const SizedBox(height: 50),
+              Container(
+                decoration: BoxDecoration(
+                  color: const Color(0xFF96E9C6),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 200),
-              Text(
-                _exitTime.format(context).toString(),
-                style: const TextStyle(
-                  fontSize: 35,
-                  color: Color(0xFFEDE885),
-                  fontFamily: 'QuickSandBold',
-                ),
-              ),
-              MaterialButton(
-                onPressed: _showExitTimePicker,
-                color: const Color(0xFFEDE885),
-                child: const Text(
-                  'CHECK OUT TIME',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    fontFamily: 'QuickSandBold',
-                  ),
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Text(
+                      _exitTime.format(context),
+                      style: const TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2F4F4F),
+                        fontFamily: 'QuickSandBold',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: _showExitTimePicker,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF6962AD),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40, vertical: 15),
+                      ),
+                      child: const Text(
+                        'Set Check-out Time',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF96E9C6),
+                          fontFamily: 'QuickSandBold',
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
